@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-//import * as firebase from 'firebase';
 import firebase from "firebase/app";
-//import "firebase/auth";
-//import "firebase/firestore";
+import "firebase/auth";
+import "firebase/firestore";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +15,7 @@ export class AppComponent {
     var firebaseConfig = {
       apiKey: "AIzaSyAR_xAuQug5LoRB7P-pLPdgOIj7MoRzqAI",
       authDomain: "projgl-c484f.firebaseapp.com",
+      databaseURL: "https://projgl-c484f-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "projgl-c484f",
       storageBucket: "projgl-c484f.appspot.com",
       messagingSenderId: "799393831927",
