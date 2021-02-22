@@ -31,6 +31,7 @@ export class AuthService{
 
 
   createNewUser(email: string, password: string) {
+    //firebase.analytics().setUserProperties({favorite_food: 'apples'});
     return new Promise<void>(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
