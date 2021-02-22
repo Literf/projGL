@@ -24,8 +24,6 @@ import { FormClientComponent } from './form-client/form-client.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
 import "firebase/auth";
 import "firebase/firestore";
 
