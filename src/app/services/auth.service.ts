@@ -10,8 +10,6 @@ export class AuthService{
 
 
     signInUser(email: string, password: string){
-        //email="mawa_1013@hotmail.fr";
-        //password="123456AAzz";
         return new Promise<void>(
             (resolve, reject) => {
                 firebase.auth().signInWithEmailAndPassword(email,password).then(
@@ -30,4 +28,22 @@ export class AuthService{
         firebase.auth().signOut();
     }
 
+
+
+  createNewUser(email: string, password: string) {
+    return new Promise<void>(
+      (resolve, reject) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(
+          () => {
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
 }
+
+}
+

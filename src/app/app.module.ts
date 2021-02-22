@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,10 +21,14 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
+
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import "firebase/auth";
+import "firebase/firestore";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,4 +60,6 @@ import { HttpClientModule } from '@angular/common/http'
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
