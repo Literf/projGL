@@ -8,7 +8,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
  { path: 'main-window',canActivate: [AuthGuardService], component: MainWindowComponent }, 
  { path: 'auth', component: AuthComponent },
- { path: 'users/new', component: FormUserComponent },
+ { path: 'users/new',canActivate: [AuthGuardService], component: FormUserComponent },
  { path: '', component: AuthComponent},
 ];
 
