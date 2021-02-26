@@ -8,6 +8,7 @@ export class User {
         public position : string, //fonction de l'employé
         public listStatus : string[],
         public startDate : Date, //auto filled 
+        public actif : boolean = true,
         public birthdate? : Date,
         public birthplace? : string,
         public gender? : string,
