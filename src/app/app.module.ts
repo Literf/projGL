@@ -17,6 +17,11 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
+import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {AddInfoService} from './services/add-info.service';
+import {RouterModule} from '@angular/router'
 
 @NgModule({
   declarations: [
@@ -30,7 +35,7 @@ import { FormClientComponent } from './form-client/form-client.component';
     FormTaskComponent,
     FormUserComponent,
     MainWindowComponent,
-    ListClientsComponent,
+    ListClientsComponent, 
     ClientComponent,
     DashboardComponent,
     ProjectBoardComponent,
@@ -38,9 +43,12 @@ import { FormClientComponent } from './form-client/form-client.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgbModule, 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AddInfoService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

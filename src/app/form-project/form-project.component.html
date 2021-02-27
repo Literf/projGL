@@ -1,1 +1,42 @@
-<p>form-project works!</p>
+<form>
+    <div class = "form-group">
+        <label for="taskName">Le nom de la tache: </label>
+        <input id="taskName" name ="taskName" type="text" class="form-control" required [(ngModel)] = "taskName">
+    </div>
+    <div class="form-group">
+        <label for="collaboRes">Le collaborateur responsable: </label>
+        <select id="collaboRes" name="collaboRes" type="text" class="form-control" [(ngModel)] = "collaboRes">
+            <option></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="start_date">Date de début: </label>
+        <input id="start_date" name="start_date" type="date" class="form-control" [(ngModel)] = "startDate">
+    </div>
+    <div class="form-group">
+        <label for="end_date">Date de fin: </label>
+        <input id="end_date" name="end_date" type="date" class="form-control" [(ngModel)] = "endDate">
+    </div>
+    <div class="form-group">
+        <label for="C.estimee">La charge estimée: </label>
+        <input id="C.estimee" name ="C.estimee" type="number" min="0" class="form-control" [(ngModel)] = "Cestimee">
+    </div>
+    <div class="form-group">
+        <label for="parentTask">La tâche mére: </label>
+        <select id="parentTask" name="parentTask" type="text" class="form-control" [(ngModel)] = "tacheMere">
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="dependencyList">Liste de dépendance: </label>
+        <select id="dependencyList" name="dependencyList" type="text" class="form-control" [(ngModel)] = "dependencylist" multiple>
+            <option></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Description du projet</label>
+        <textarea id="description" name="description" cols="30" rows="10" class="form-control" [(ngModel)] = "description"></textarea>
+    </div>
+    <div><button (click)= "AddTask()">Ajouter la tâche</button><button>Annuler</button></div>
+  </form>
