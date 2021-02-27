@@ -6,7 +6,7 @@ import { Contact } from "./contact";
 export class Client {
 
   constructor(
-    public id: number,
+    //public id: number,
     public name: string,
     public listContact: Contact[],
     public status : string,

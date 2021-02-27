@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import firebase from "firebase/app";
 import "firebase/auth";
-//import "firebase/firestore";
 
 @Injectable(
 )
@@ -31,7 +30,6 @@ export class AuthService{
 
 
   createNewUser(email: string, password: string) {
-    //firebase.analytics().setUserProperties({favorite_food: 'apples'});
     return new Promise<void>(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
