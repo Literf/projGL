@@ -21,7 +21,7 @@
 
 <div class="en-tete">
 <button class="btn btn-primary" (click)="onNewClient()"> Ajouter un nouveau client </button>
-<input matInput type="text" placeholder="Recherche" >
+<input type="text" [(ngModel)]="clientFilter.name" placeholder="Recherche" >
 </div>
   <table class="table">
     <thead>
@@ -35,7 +35,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor = "let cl of clients ; let i = index">
+        <tr *ngFor = "let cl of clients | filterBy: clientFilter ; let i = index">
             
             <td>{{cl.name}}</td>
             <td>{{cl.status}}</td>

@@ -15,6 +15,7 @@ import {ClientComponent} from '../client/client.component';
 export class ListClientsComponent implements OnInit, OnDestroy {
 
   clients: Client[];
+  clientFilter: any = {name:''};
   clientsSubscription: Subscription;
 
   constructor(private clientsService: ClientsService, private router: Router, private dialog:MatDialog) {

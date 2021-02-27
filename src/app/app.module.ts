@@ -26,7 +26,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { ClientsService } from './services/clients.service';
 import {MatIconModule} from '@angular/material/icon';
-import {ScrollingModule} from '@angular/cdk/scrolling'
+import { FilterPipeModule } from 'ngx-filter-pipe';
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -58,7 +58,7 @@ import "firebase/firestore";
     MatDialogModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ScrollingModule
+    FilterPipeModule
   ],
   providers: [
     AuthService,
