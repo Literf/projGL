@@ -3,15 +3,17 @@
     <button mat-icon-button class="close-button" style="float: right;" [mat-dialog-close]="true">
       <mat-icon class="close-icon" color="warn">close</mat-icon>
     </button>
+    <h5>(<label class="control-label"></label>) champ requis</h5>
 </h2>
     <form [formGroup]="clientForm" (ngSubmit)="onSaveClient()" >
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" class="form-control" name="name" formControlName="name">
+            <label class="control-label" for="name">Nom</label>
+            <input type="text" id="name" class="form-control" name="name" formControlName="name" >
+            <!--<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger"><div *ngIf="name.errors.NameNotAllowed" >Ce client existe déjà.</div></div>-->
         </div>
 
         <div class="form-group">
-            <label for="status">Statut</label>
+            <label class="control-label" for="status">Statut</label>
             <select id="status" class="form-control" formControlName="status">
                 <option value="actif">actif</option>
                 <option value="non actif">non actif</option>
@@ -33,7 +35,7 @@
             <input type="text" id="parentCompany" class="form-control" formControlName="parentCompany">
         </div>
         
-      <label >Contacts<button type="button" class="btn btn-primary btn-sm"   style= "margin-left: 5px;"   (click)="addClient()">Ajouter un autre contact </button></label>
+      <label >Contacts <label style="font-size: 12px;">(renseigner au moins un contact)</label> <button type="button" class="btn btn-primary btn-sm"   style= "margin-left: 5px;"   (click)="addClient()">Ajouter un autre contact </button></label>
 	    <div class="form-group row" id=cts>
 		    <div formArrayName="listContact">
                 
@@ -41,17 +43,17 @@
                   <hr color="black" style="width:100%;text-align:left;margin-left:0">
 
                     <div class="bc">
-                      <label for="firstName">Prénom</label>
+                      <label class="control-label" for="firstName">Prénom</label>
                       <input class="form-control" type="text" formControlName="firstName" id="task{{i}}" >
                     </div>
                     
                     <div class="bc">
-                      <label for="lastName">Nom</label>
+                      <label class="control-label" for="lastName">Nom</label>
                       <input class="form-control" type="text" formControlName="lastName" id="task{{i}}" >
                     </div>
 
                     <div class="bc">
-                      <label for="email">Email</label>
+                      <label class="control-label" for="email">Email</label>
                       <input class="form-control" type="text" formControlName="email" id="task{{i}}" >
                     </div>
 

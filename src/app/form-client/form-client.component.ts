@@ -101,7 +101,6 @@ export class FormClientComponent implements OnInit {
 
   
   onSaveClient() {
-    console.log("here");
     const form = this.clientForm;
     var Contacts : Contact [] =[];
     const c = this.clientForm.get('listContact');
@@ -129,7 +128,9 @@ export class FormClientComponent implements OnInit {
       contacts.markAsTouched();
     }
 
-  
+    /*get name(){
+      return this.clientForm.get('name');
+    }*/
 
  
   

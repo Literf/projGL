@@ -25,7 +25,10 @@ div#cts{
     width: 400px;
     
 }
-
+.control-label:after {
+    content:"*";
+    color:red;
+  }
 
 
 div.my-btns{

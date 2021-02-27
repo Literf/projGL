@@ -4,7 +4,7 @@ import { Client } from '../models/client';
 import firebase from "firebase/app";
 import 'firebase/database';
 import DataSnapshot = firebase.database.DataSnapshot;
-
+//import {AbstractControl,ValidatorFn} from '@angular/forms';
 
 
 @Injectable()
@@ -78,5 +78,20 @@ export class ClientsService {
         this.saveClients();
         this.emitClients();
       }
+
+
+     /* NameClientValidator():ValidatorFn{
+        return (control: AbstractControl): {[key: string]: boolean} | null => {
+
+          this.list_de_clients.forEach(c=>{
+            if(control.value.trim()==c.name){return {'NameNotAllowed':true}};
+          });
+
+
+          return null;
+        };
+      }*/
+
+
 
 }
