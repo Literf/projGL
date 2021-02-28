@@ -7,7 +7,6 @@ import "firebase/auth";
 export class AuthService{
     constructor() {}
 
-
     signInUser(email: string, password: string){
         return new Promise<void>(
             (resolve, reject) => {
@@ -27,14 +26,21 @@ export class AuthService{
         firebase.auth().signOut();
     }
 
+  createNewUser(email: string, password: string) {
+
+    // createUserWithEmailAndPassword will signIn the user with the created info
+    // so we need to signIn back the admin after the creation
+    let originalUser = firebase.auth().currentUser; 
 
 
   createNewUser(email: string, password: string) {
+
     return new Promise<void>(
       (resolve, reject) => {
         firebase.auth().createUserWithEmailAndPassword(email, password).then(
           () => {
             resolve();
+            firebase.auth().updateCurrentUser(originalUser); //SignIn back the admins
           },
           (error) => {
             reject(error);

@@ -29,6 +29,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import "firebase/auth";
 import "firebase/firestore";
+import { ModifUserComponent } from './modif-user/modif-user.component';
+import { AdminWindowComponent } from './admin-window/admin-window.component';
+import { SearchUserComponent } from './search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import "firebase/firestore";
     ClientComponent,
     DashboardComponent,
     ProjectBoardComponent,
-    FormClientComponent
+    FormClientComponent,
+    ModifUserComponent,
+    AdminWindowComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,
