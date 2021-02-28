@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-//import * as firebase from 'firebase';
 import firebase from "firebase/app";
-//import "firebase/auth";
-//import "firebase/firestore";
+import "firebase/auth";
+import "firebase/firestore";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +12,7 @@ export class AppComponent {
   title = 'projGL';
 
   constructor(){
+    
     var firebaseConfig = {
       apiKey: "AIzaSyAR_xAuQug5LoRB7P-pLPdgOIj7MoRzqAI",
       authDomain: "projgl-c484f.firebaseapp.com",
@@ -23,8 +23,19 @@ export class AppComponent {
       appId: "1:799393831927:web:07b0f8b23748b06133acf2",
       measurementId: "G-4413J0LMEE"
     };
-    // Initialize Firebase
+    
     firebase.initializeApp(firebaseConfig);
+
   }
+
+
+
+
+
+
+
+
+
+  
 
 }

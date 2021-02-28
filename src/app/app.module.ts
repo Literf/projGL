@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -17,11 +22,17 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
-import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
 import {AddInfoService} from './services/add-info.service';
-import {RouterModule} from '@angular/router'
+import { ClientsService } from './services/clients.service';
+import {MatIconModule} from '@angular/material/icon';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import "firebase/auth";
+import "firebase/firestore";
+import { ModifUserComponent } from './modif-user/modif-user.component';
+import { AdminWindowComponent } from './admin-window/admin-window.component';
+import { SearchUserComponent } from './search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -39,16 +50,34 @@ import {RouterModule} from '@angular/router'
     ClientComponent,
     DashboardComponent,
     ProjectBoardComponent,
-    FormClientComponent
+    FormClientComponent,
+    ModifUserComponent,
+    AdminWindowComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+
     FormsModule,
-    NgbModule, 
+    ReactiveFormsModule,
+    MatTabsModule,
+    MatIconModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FilterPipeModule
   ],
-  providers: [AddInfoService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    ClientsService,
+    AddInfoService
+  ],
   bootstrap: [AppComponent],
+  entryComponents:[FormClientComponent]
+
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
