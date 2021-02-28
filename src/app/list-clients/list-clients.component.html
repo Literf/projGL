@@ -1,1 +1,54 @@
-<p>list-clients works!</p>
+<!--<div class="row">
+    <div class="col-xs-12">
+      <h2>Clients <button class="btn btn-primary" (click)="onNewClient()"> Ajouter </button> </h2>
+      <div class="list-group">
+        <button
+          class="list-group-item"
+          *ngFor="let cl of clients; let i = index">
+          <h3 class="list-group-item-heading" >
+            {{ cl.name }} 
+            <div style="float: right;">
+                <button class="mat-icon-button"  color="warn" (click)="onDeleteClient(cl)"><mat-icon>delete</mat-icon></button>
+                <button mat-icon-button (click)="onEditClient(cl,i)"><mat-icon>edit</mat-icon></button>
+            </div>  
+          </h3>
+          <p class="list-group-item-text">{{ cl.status }}</p>
+        </button>
+      </div>
+      
+    </div>
+  </div>-->
+
+<div class="en-tete">
+<button class="btn btn-primary" (click)="onNewClient()"> Ajouter un nouveau client </button>
+<input type="text" [(ngModel)]="clientFilter.name" placeholder="Recherche" >
+</div>
+  <table class="table">
+    <thead>
+        <tr>
+            <th>Nom </th>
+            <th>Statut</th>
+            <th >Adresse</th>
+            <th >Secteur</th>
+            <th >Société mère</th> 
+            <th></th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let cl of clients | filterBy: clientFilter ; let i = index">
+            
+            <td>{{cl.name}}</td>
+            <td>{{cl.status}}</td>
+            <td>{{isEmpty(cl.companyAdress)}}</td>
+            <td>{{isEmpty(cl.activityArea)}}</td>
+            <td>{{isEmpty(cl.parentCompany)}}</td>
+
+            
+            <button mat-icon-button id =btn-cts (click)="onViewClient(i)">Contacts <mat-icon inline=true >contacts</mat-icon></button>
+            <button mat-icon-button (click)="onEditClient(cl,i)"><mat-icon>edit</mat-icon></button>
+            <button class="mat-icon-button"  color="warn" (click)="onDeleteClient(cl)"><mat-icon>delete</mat-icon></button>
+            
+            
+        </tr>
+    </tbody>
+</table>

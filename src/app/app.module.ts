@@ -3,7 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -20,9 +22,11 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
-
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { ClientsService } from './services/clients.service';
+import {MatIconModule} from '@angular/material/icon';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 import "firebase/auth";
 import "firebase/firestore";
 import { ModifUserComponent } from './modif-user/modif-user.component';
@@ -55,13 +59,21 @@ import { SearchUserComponent } from './search-user/search-user.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    MatTabsModule,
+    MatIconModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FilterPipeModule
   ],
   providers: [
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    ClientsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[FormClientComponent]
+  
 })
 export class AppModule { 
   
