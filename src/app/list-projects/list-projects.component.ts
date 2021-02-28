@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../models/project';
-import { ModalDismissReasons,NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {AddInfoService} from '../services/add-info.service'
 import { Router } from '@angular/router';
 import { Task } from '../models/task';
@@ -39,7 +38,7 @@ export class ListProjectsComponent implements OnInit {
   public description:string;
   public task:Task;
 
-  constructor(public service:AddInfoService ,private modalService: NgbModal, private router: Router) { }
+  constructor(public service:AddInfoService, private router: Router) { }
 
   public listClients: Client[];
   clientSubscription: Subscription;
@@ -80,7 +79,7 @@ export class ListProjectsComponent implements OnInit {
   }
 
   openAndGetProject(projet,content){
-    this.projetActuel = projet;
+    /*this.projetActuel = projet;
     this.projectName = this.projetActuel.name.toLowerCase();
     if(this.projetActuel.hasOwnProperty('estimatedEndDate'))
     {
@@ -106,9 +105,9 @@ export class ListProjectsComponent implements OnInit {
       this.closeResult = `Closed with: ${result}`; 
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    });*/
   }
-
+/*
   getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -117,7 +116,7 @@ export class ListProjectsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
-  }
+  }*/
 
   onViewProject(id: number) {
     this.router.navigate(['/projects', id.toString()]);

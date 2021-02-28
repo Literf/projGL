@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormArray,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from '../models/project';
 import { Task } from '../models/task';
 import { AddInfoService } from '../services/add-info.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-form-project',
@@ -14,24 +15,29 @@ import { Subscription } from 'rxjs';
 export class FormProjectComponent implements OnInit {
 
   @Input() currentProject:Project;
-  public tasksList:Task[];
-  TasksSubscription: Subscription;
-  constructor(public ProjectsService: AddInfoService, private router: Router) { }
-
-  public taskName:string;
-  public startDate:Date;
-  public endDate:Date;
-  public collaboRes:string;
-  public Cestimee:number;
-  public tacheMere:string;
-  public dependencylist:string[];
-  public description:string;
   public task:Task;
+  TasksSubscription: Subscription;
+  constructor(public ProjectsService: AddInfoService, private router: Router, public dialogRef:MatDialogRef<FormProjectComponent>) { }
+  
+  public projectName:string = "";
+  public ChefName:string = "";
+  public ClientName:string="";
+  public StartDate:Date;
+  public EndDate:Date;
+  public Description:string = "";
 
+  closeResult = '';
+  projectsSubscription: Subscription;
+  public projectsChefProjet: Project[];
+  public projectsCollabo: Project[];
+
+
+  
   ngOnInit(): void {
-    this.TasksSubscription = this.ProjectsService.projectSubject.subscribe(
-      (listTasks: Project[]) => {
-        this.tasksList = listTasks;
+    this.projectsSubscription = this.ProjectsService.projectSubject.subscribe(
+      (listpr: Project[]) => {
+        this.projectsChefProjet = listpr;
+        this.projectsCollabo= listpr;
       }
     );
     this.ProjectsService.emitProjectsubject();
@@ -41,10 +47,11 @@ export class FormProjectComponent implements OnInit {
     this.router.navigate(['/listTask', id]);
   }
 
-  AddTask(){
-    //this.task=new Task(1,this.taskName, null, this.startDate, this.startDate, this.endDate, this.endDate, this.description, this.Cestimee,2,2,2,[],[],[]);
-    console.log(this.currentProject);
-    this.ProjectsService.AddTaskToProject(this.task);
+  projet:Project;
+  AddProject(){
+    //this.collab =new User("haithem", "dahimi", "dahimihaithem@gmail.com", "employee", ["employee"], new Date(), new Date(),"", "", "", "","",new Date() );
+    this.projet = new Project(this.projectsChefProjet.length, this.projectName, "dahimihaithem@gmail.com", this.Description, "started", this.StartDate, this.EndDate, new Date(), null, null, [])
+    this.ProjectsService.AddProjectToServer(this.projet);
   }
 
 }
