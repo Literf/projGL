@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../models/project';
 import { AddInfoService } from '../services/add-info.service';
-import { ModalDismissReasons,NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog'
+import {FormProjectComponent} from '../form-project/form-project.component'
 @Component({
   selector: 'app-project-board',
   templateUrl: './project-board.component.html',
@@ -24,7 +24,7 @@ export class ProjectBoardComponent implements OnInit {
   projectsSubscription: Subscription;
   public projectsChefProjet: Project[];
   public projectsCollabo: Project[];
-  constructor(public ProjectsService: AddInfoService, private modalService: NgbModal,private router: Router) { }
+  constructor(public ProjectsService: AddInfoService ,private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.projectsSubscription = this.ProjectsService.projectSubject.subscribe(
@@ -36,6 +36,13 @@ export class ProjectBoardComponent implements OnInit {
     this.ProjectsService.emitProjectsubject();
   }
 
+
+  open(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = "60%";
+    this.dialog.open(FormProjectComponent, dialogConfig);
+  }
+/*
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -56,9 +63,9 @@ export class ProjectBoardComponent implements OnInit {
   projet:Project;
   collab:User;
   AddProject(){
-    this.collab =new User(1, "haithem", "dahimi", "dahimihaithem@gmail.com", "employee", ["employee"], new Date(), new Date(),"", "", "", "","",new Date() );
+    this.collab =new User("haithem", "dahimi", "dahimihaithem@gmail.com", "employee", ["employee"], new Date(), new Date(),"", "", "", "","",new Date() );
     this.projet = new Project(this.projectsChefProjet.length, this.projectName, "dahimihaithem@gmail.com", this.Description, "started", this.StartDate, this.EndDate, new Date(), null, null, [])
     this.ProjectsService.AddProjectToServer(this.projet);
   }
-
+*/
 }

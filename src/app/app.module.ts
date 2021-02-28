@@ -75,7 +75,8 @@ import { SearchUserComponent } from './search-user/search-user.component';
     AddInfoService
   ],
   bootstrap: [AppComponent],
-  entryComponents:[FormClientComponent]
+  entryComponents:[FormClientComponent,
+    FormProjectComponent]
 
 })
 export class AppModule { 

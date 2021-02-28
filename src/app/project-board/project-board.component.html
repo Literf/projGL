@@ -1,8 +1,8 @@
 <app-list-projects [listProjects] = projectsCollabo></app-list-projects>
 <label> Mes projets Chef de projet</label>
 <app-list-projects [listProjects] = projectsChefProjet></app-list-projects>
-<button (click) = "open(content)">Créer un nouveau projet</button>
-
+<button (click) = "open()">Créer un nouveau projet</button>
+<!--
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Add project </h4>
@@ -43,4 +43,4 @@
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)= "AddProject()" (click)="modal.close('Save click')">Save</button>
 </div>
-</ng-template>
+</ng-template> -->
