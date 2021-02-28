@@ -1,1 +1,90 @@
-<p>list-projects works!</p>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th >Nom du projet</th>
+            <th>Chef de projet</th>
+            <th >Client</th>
+            <th >Date de début</th>
+            <th >Date de fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let projet of listProjects">
+            <td role="button" (click)= "openAndGetProject(projet,content)">{{projet.name}}</td>
+            <td>{{projet.projectManager.firstName}} {{projet.projectManager.lastName}} </td>
+            <td>{{projet.client}}</td>
+            <td>{{projet.startDate | date:'d/M/y' }}</td>
+            <td>{{projet.estimatedEndDate | date:'d/M/y' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Projet: {{projetActuel.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+<form>
+    <div class = "form-group">
+        <label for="Nom de projet">Le nom du projet</label>
+        <input id="Nom de projet" name ="Nom de projet" type="text" class="form-control" value="{{projetActuel.name}}" [(ngModel)]="projectName">
+    </div>
+    <div class = "form-group">
+        <label for="Chef de projet">Le chef de projet</label>
+        <input id="Chef de projet" name="Chef de projet" type="text" class="form-control" value="{{projetActuel.projectManager.firstName}} {{projetActuel.projectManager.lastName}}" [(ngModel)]="ChefName">
+    </div>
+    <div class="form-group">
+        <label for="client">Le client</label>
+        <select id="client" name="client" type="text" class="form-control" [(ngModel)]="ClientName">
+            <option value="Client1"> client1</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="start_date">Date de début</label>
+        <input id="start_date" name="start_date" type="date" class="form-control" value="{{projetActuel.startDate|date:'yyyy-MM-dd'}}" [ngModel]="StartDate | date:'yyyy-MM-dd'" (ngModelChange)="StartDate = $event">
+    </div>
+    <div class="form-group">
+        <label for="end_date">Date de fin</label>
+        <input id="end_date" name="end_date" type="date" class="form-control" value="{{projetActuel.estimatedEndDate|date:'yyyy-MM-dd'}}" [ngModel]="EndDate | date:'yyyy-MM-dd'" (ngModelChange)="EndDate = $event">
+    </div>
+    <div class="form-group">
+        <label for="description">Description du projet</label>
+        <textarea id="description" name="description" cols="30" rows="10" class="form-control"[(ngModel)]="Description">{{projetActuel.description}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="tasksList">Liste des tâches</label>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom Tâche</th>
+                    <th> Responsable</th>
+                    <th>C. estimée</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let task of projetActuel.listTask">
+                    <td>{{task.name}}</td>
+                    <td>{{task.collab.firstName}} {{task.collab.lastName}}</td>
+                    <td>{{task.estimatedWorkload}}</td>
+                    <td>{{task.startDate | date:'d/M/y'}}</td>
+                    <td>{{task.endDate | date:'d/M/y'}}</td>
+                    <td><button>Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <button name = "buttonadd" type = "button" class = "btn btn-default" > AddTask </button>
+    </div>
+    <app-form-project currentProject = "projetActuel"></app-form-project>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)= "saveChanges()" (click)="modal.close('Save click')" >Save</button>
+</div>
+</ng-template>
+
