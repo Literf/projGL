@@ -43,7 +43,8 @@ export class FormProjectComponent implements OnInit {
 
   AddTask(){
     //this.task=new Task(1,this.taskName, null, this.startDate, this.startDate, this.endDate, this.endDate, this.description, this.Cestimee,2,2,2,[],[],[]);
-    this.ProjectsService.AddTaskToProject(this.task, this.currentProject);
+    console.log(this.currentProject);
+    this.ProjectsService.AddTaskToProject(this.task);
   }
 
 }

@@ -35,9 +35,6 @@ export class ProjectBoardComponent implements OnInit {
     );
     this.ProjectsService.emitProjectsubject();
   }
-  onViewProject(id: number) {
-    this.router.navigate(['/info', id]);
-  }
 
   open(content:any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -60,9 +57,8 @@ export class ProjectBoardComponent implements OnInit {
   collab:User;
   AddProject(){
     this.collab =new User(1, "haithem", "dahimi", "dahimihaithem@gmail.com", "employee", ["employee"], new Date(), new Date(),"", "", "", "","",new Date() );
-    this.projet = new Project(1, this.projectName, this.collab, this.Description, "started", this.StartDate, this.EndDate, new Date(), null, null, [])
+    this.projet = new Project(this.projectsChefProjet.length, this.projectName, "dahimihaithem@gmail.com", this.Description, "started", this.StartDate, this.EndDate, new Date(), null, null, [])
     this.ProjectsService.AddProjectToServer(this.projet);
   }
-
 
 }
