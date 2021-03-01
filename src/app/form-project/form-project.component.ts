@@ -25,7 +25,6 @@ export class FormProjectComponent implements OnInit {
   constructor(public ProjectsService: AddInfoService, private router: Router, public dialogRef:MatDialogRef<FormProjectComponent>) { }
   
   public projectName:string = "";
-  public ChefName:string = "";
   public ClientName:string="";
   public StartDate:Date;
   public EndDate:Date;
