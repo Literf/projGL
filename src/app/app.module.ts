@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,19 +23,23 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormAvancementComponent } from './form-avancement/form-avancement.component';
-import { FilterPipeModule } from 'ngx-filter-pipe';
 import { DashboardService } from './services/dashboard.service';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { TestComponent } from './test/test.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SortDirective } from './directive/sort.directive';
 
-
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import {AddInfoService} from './services/add-info.service';
+import { ClientsService } from './services/clients.service';
+import {MatIconModule} from '@angular/material/icon';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import "firebase/auth";
+import "firebase/firestore";
+import { ModifUserComponent } from './modif-user/modif-user.component';
+import { AdminWindowComponent } from './admin-window/admin-window.component';
+import { SearchUserComponent } from './search-user/search-user.component';
+import { InfoUserComponent } from './info-user/info-user.component';
 
 @NgModule({
   declarations: [
@@ -44,30 +53,44 @@ import { SortDirective } from './directive/sort.directive';
     FormTaskComponent,
     FormUserComponent,
     MainWindowComponent,
-    ListClientsComponent,
+    ListClientsComponent, 
     ClientComponent,
     DashboardComponent,
     ProjectBoardComponent,
     FormClientComponent,
     FormAvancementComponent,
-    TestComponent,
     SortDirective,
+    ModifUserComponent,
+    AdminWindowComponent,
+    SearchUserComponent,
+    InfoUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
-    FilterPipeModule,
+    MatTabsModule,
+    MatIconModule,
     MatDialogModule,
-    MatTableModule,
-    MatSortModule,
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FilterPipeModule
   ],
-  providers: [DashboardService],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    AuthGuardService,
+    ClientsService,
+    AddInfoService,
+    DashboardService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents:[FormClientComponent,
+    FormProjectComponent]
+
+
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

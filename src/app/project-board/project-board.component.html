@@ -1,1 +1,5 @@
-<p>project-board works!</p>
+<label> Mes projets collaborateurs</label>
+<app-list-projects [listProjects] = projectsCollabo></app-list-projects>
+<label> Mes projets Chef de projet</label>
+<app-list-projects [listProjects] = projectsChefProjet></app-list-projects>
+<button (click) = "open()">Créer un nouveau projet</button>

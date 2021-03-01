@@ -13,6 +13,7 @@ export class AppComponent {
   
 
   constructor(){
+    
     var firebaseConfig = {
       apiKey: "AIzaSyAR_xAuQug5LoRB7P-pLPdgOIj7MoRzqAI",
       authDomain: "projgl-c484f.firebaseapp.com",
@@ -27,5 +28,15 @@ export class AppComponent {
     firebase.initializeApp(firebaseConfig);
 
   }
+
+
+
+
+
+
+
+
+
+  
 
 }

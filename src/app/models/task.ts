@@ -5,7 +5,7 @@ export class Task {
     constructor(
       public id: number,
       public name: string,
-      public collab? : User,
+      public collab? : string,
       public startDate? : Date,
       public actualStartDate? : Date,
       public endDate? : Date,
@@ -18,5 +18,6 @@ export class Task {
       public listTaskPredecessor? : Task[],
       public listTaskSuccessor? : Task[],
       public listTaskChild? : Task[],
+      public niveau? : number,
     ) {}
   }

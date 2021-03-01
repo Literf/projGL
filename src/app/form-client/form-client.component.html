@@ -1,1 +1,162 @@
-<p>form-client works!</p>
+<div mat-dialog-content >
+    <h2>Créer un client
+    <button mat-icon-button class="close-button" style="float: right;" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+    <h5>(<label class="control-label"></label>) champ requis</h5>
+</h2>
+    <form [formGroup]="clientForm" (ngSubmit)="onSaveClient()" >
+        <div class="form-group">
+            <label class="control-label" for="name">Nom</label>
+            <input type="text" id="name" class="form-control" name="name" formControlName="name" >
+            <!--<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger"><div *ngIf="name.errors.NameNotAllowed" >Ce client existe déjà.</div></div>-->
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="status">Statut</label>
+            <select id="status" class="form-control" formControlName="status">
+                <option value="actif">actif</option>
+                <option value="non actif">non actif</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="companyAdress">Adresse</label>
+            <input type="text" id="companyAdress" class="form-control" formControlName="companyAdress">
+        </div>
+
+        <div class="form-group">
+            <label for="activityArea">Secteur d'activité</label>
+            <input type="text" id="activityArea" class="form-control" formControlName="activityArea">
+        </div>
+
+        <div class="form-group">
+            <label for="parentCompany">Société mère</label>
+            <input type="text" id="parentCompany" class="form-control" formControlName="parentCompany">
+        </div>
+        
+      <label >Contacts <label style="font-size: 12px;">(renseigner au moins un contact)</label> <button type="button" class="btn btn-primary btn-sm"   style= "margin-left: 5px;"   (click)="addClient()">Ajouter un autre contact </button></label>
+	    <div class="form-group row" id=cts>
+		    <div formArrayName="listContact">
+                
+                <div *ngFor="let contact of clientForm.controls.listContact['controls']; let i = index" [formGroupName]="i">
+                  <hr color="black" style="width:100%;text-align:left;margin-left:0">
+
+                    <div class="bc">
+                      <label class="control-label" for="firstName">Prénom</label>
+                      <input class="form-control" type="text" formControlName="firstName" id="task{{i}}" >
+                    </div>
+                    
+                    <div class="bc">
+                      <label class="control-label" for="lastName">Nom</label>
+                      <input class="form-control" type="text" formControlName="lastName" id="task{{i}}" >
+                    </div>
+
+                    <div class="bc">
+                      <label class="control-label" for="email">Email</label>
+                      <input class="form-control" type="text" formControlName="email" id="task{{i}}" >
+                    </div>
+
+                    <div class="bc">
+                      <label for="phoneNumber">Numéro de téléphone</label>
+                      <input class="form-control" type="text" formControlName="phoneNumber" id="task{{i}}" >
+                    </div>
+
+                    <button type="button" class="btn btn-danger " id= "btn-danger" (click)= "removeItem(i)"><mat-icon>delete</mat-icon></button>
+                </div>
+                
+			    
+			</div>
+		</div>
+    <div class="my-btns">
+      <button type="submit" class="btn btn-success" id="btn-success" [disabled]="clientForm.invalid">Valider</button>
+      <button mat-button mat-dialog-close class="btn btn-light" id="btn-light"  >Annuler</button>
+    </div>
+    </form>
+</div>
+
+
+
+<!--
+<pre>{{myForm.value | json}}</pre>
+<div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="clientForm" (ngSubmit)="onSaveClient()">
+
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+      </div>
+
+      <div class="form-group">
+        <label for="status">Statut</label>
+        <select id="status" class="form-control" formControlName="status">
+          <option value="actif">actif</option>
+          <option value="non actif">non actif</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="companyAdress">Adresse</label>
+        <input type="text" id="companyAdress" class="form-control" formControlName="companyAdress">
+      </div>
+
+      <div class="form-group">
+        <label for="activityArea">Secteur d'activité</label>
+        <input type="text" id="activityArea" class="form-control" formControlName="activityArea">
+      </div>
+
+      <div class="form-group">
+        <label for="parentCompany">Société mère</label>
+        <input type="text" id="parentCompany" class="form-control" formControlName="parentCompany">
+      </div>
+      
+
+
+      <div formArrayName="list-clients">
+        <h3>Contacts  <button type="button" class="btn btn-success" (click)="onAddContact()">+</button></h3> 
+        <div class="form-group" *ngFor="let client of getContacts().controls; let i = index" id="formC">
+          
+            <hr size = "15" width="100%" color="black">
+            <form [formGroup]="contactForm" >
+                
+                <div class="form-group" >
+                  <label for="firstName">Prénom</label>
+                  <input maxlength="50" type="text" id="firstName" class="form-control" formControlName="firstName">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Nom</label>
+                    <input type="text" id="lastName" class="form-control" formControlName="lastName">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" formControlName="email">
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="phoneNumber">Numéro de téléphone</label>
+                    <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+                  </div>
+                  
+
+            </form>
+
+
+
+
+
+        </div>
+        
+      </div>
+  
+
+      
+      
+      <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+  </div>
+-->
+
+
