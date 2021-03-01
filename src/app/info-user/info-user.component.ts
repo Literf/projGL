@@ -98,12 +98,11 @@ export class InfoUserComponent implements OnInit {
 
 
     if(newPassword != null){
-      console.log(newPassword);
 
-
+      //On signIn d'abord l'user pour des question de securité
       this.authService.signInUser(this.user.email,oldPassword).then(
         ()=>{
-          
+          // En cas de signIn reussi on change le mot de passe
           this.authService.changePassword(newPassword).then(
             () => {
             },
