@@ -14,7 +14,7 @@ export class Task {
       public estimatedWorkload? : number,
       public usedWorkload? : number,
       public remainingWorkload? : number,
-      public progress? : string,
+      public progress? : number,
       public listTaskPredecessor? : Task[],
       public listTaskSuccessor? : Task[],
       public listTaskChild? : Task[],

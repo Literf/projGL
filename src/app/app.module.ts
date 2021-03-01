@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,19 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormAvancementComponent } from './form-avancement/form-avancement.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { DashboardService } from './services/dashboard.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { TestComponent } from './test/test.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SortDirective } from './directive/sort.directive';
+
+
 
 @NgModule({
   declarations: [
@@ -34,13 +48,26 @@ import { FormClientComponent } from './form-client/form-client.component';
     ClientComponent,
     DashboardComponent,
     ProjectBoardComponent,
-    FormClientComponent
+    FormClientComponent,
+    FormAvancementComponent,
+    TestComponent,
+    SortDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FilterPipeModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    BrowserAnimationsModule
+    
   ],
-  providers: [],
+  providers: [DashboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
