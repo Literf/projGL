@@ -10,10 +10,6 @@
       <label for="Nom de projet">Le nom du projet</label>
       <input id="Nom de projet" name ="Nom de projet" type="text" class="form-control" placeholder="Entrer le nom du projet" [(ngModel)]="projectName">
     </div>
-    <div class = "form-group">
-      <label for="Chef de projet">Le chef de projet</label>
-      <input id="Chef de projet" name="Chef de projet" type="text" class="form-control" placeholder="Entrer le chef du projet" [(ngModel)]="ChefName">
-    </div>
     <div class="form-group">
       <label for="client">Le client</label>
       <select id="client" name="client" type="text" class="form-control" aria-placeholder="Client" [(ngModel)]="ClientName">
@@ -71,7 +67,7 @@
 
     <div class="form-group">
       <label for="start_dateTask">Date de début: </label>
-      <input id="start_dateTask" name="start_dateTask" type="date" [min]="StartDate" [max]="end_dateTask" class="form-control" [(ngModel)] = "start_dateTask">
+      <input id="start_dateTask" name="start_dateTask" type="date" [min]="StartDate" [max]="EndDate" class="form-control" [(ngModel)] = "start_dateTask">
     </div>
     <div class="form-group">
       <label for="end_dateTask">Date de fin: </label>
