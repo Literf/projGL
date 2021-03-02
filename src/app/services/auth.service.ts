@@ -5,6 +5,7 @@ import "firebase/auth";
 @Injectable(
 )
 export class AuthService{
+
     constructor() {}
 
     signInUser(email: string, password: string){
@@ -25,7 +26,7 @@ export class AuthService{
     signOutUser(){
         firebase.auth().signOut();
     }
-
+  
   createNewUser(email: string, password: string) {
 
     // createUserWithEmailAndPassword will signIn the user with the created info
@@ -44,7 +45,24 @@ export class AuthService{
         );
       }
     );
-}
+  }
+
+  changePassword(psw : string){
+    //return firebase.auth().currentUser.updatePassword(psw));
+    return new Promise<void>(
+      (resolve, reject) => {
+        firebase.auth().currentUser.updatePassword(psw).then(
+          () => {
+            resolve();
+            //firebase.auth().updateCurrentUser(originalUser); //SignIn back the admins
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
 
 }
 

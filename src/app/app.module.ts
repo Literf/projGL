@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule} from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
@@ -22,6 +23,11 @@ import { ClientComponent } from './client/client.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectBoardComponent } from './project-board/project-board.component';
 import { FormClientComponent } from './form-client/form-client.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormAvancementComponent } from './form-avancement/form-avancement.component';
+import { DashboardService } from './services/dashboard.service';
+import { SortDirective } from './directive/sort.directive';
+
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import {AddInfoService} from './services/add-info.service';
@@ -33,6 +39,7 @@ import "firebase/firestore";
 import { ModifUserComponent } from './modif-user/modif-user.component';
 import { AdminWindowComponent } from './admin-window/admin-window.component';
 import { SearchUserComponent } from './search-user/search-user.component';
+import { InfoUserComponent } from './info-user/info-user.component';
 
 @NgModule({
   declarations: [
@@ -51,14 +58,17 @@ import { SearchUserComponent } from './search-user/search-user.component';
     DashboardComponent,
     ProjectBoardComponent,
     FormClientComponent,
+    FormAvancementComponent,
+    SortDirective,
     ModifUserComponent,
     AdminWindowComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    InfoUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
@@ -72,11 +82,13 @@ import { SearchUserComponent } from './search-user/search-user.component';
     AuthService,
     AuthGuardService,
     ClientsService,
-    AddInfoService
+    AddInfoService,
+    DashboardService
   ],
   bootstrap: [AppComponent],
   entryComponents:[FormClientComponent,
     FormProjectComponent]
+
 
 })
 export class AppModule { 
