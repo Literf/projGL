@@ -13,7 +13,7 @@
     <div class="form-group">
       <label for="client">Le client</label>
       <select id="client" name="client" type="text" class="form-control" aria-placeholder="Client" [(ngModel)]="ClientName">
-          <option value="Client1"> client1</option>
+          <option *ngFor = "let client of listClients"> {{client.name}} </option>
       </select>
     </div>
     <div class="form-group">
@@ -80,13 +80,28 @@
     <div class="form-group">
       <label for="parentTask">La tâche mére: </label>
       <select id="parentTask" name="parentTask" type="text" class="form-control" [(ngModel)] = "tacheMere">
-        <option *ngFor="let task of listTask"> {{task.name}}</option>
+        <ng-container *ngFor="let task of listTask">
+          <option style="font-weight: bold;" > {{task.name}}</option>
+          <ng-container *ngIf="hasTaskFille(task)">
+            <option *ngFor="let taskFille of task.listTaskChild"> {{taskFille.name}}</option>
+          </ng-container>
+        </ng-container>
       </select>
     </div>
     <div class="form-group">
       <label for="dependencyList">Liste de dépendance: </label>
       <select id="dependencyList" name="dependencyList" type="text" class="form-control" [(ngModel)] = "dependencylist" multiple>
-        <option></option>
+        <ng-container *ngFor="let task of listTask">
+          <option style="font-weight: bolder;" > {{task.name}}</option>
+          <ng-container *ngIf="hasTaskFille(task)">
+            <ng-container *ngFor="let taskFille of task.listTaskChild">
+              <option style="font-weight: bold;"> {{taskFille.name}}</option>
+              <ng-container *ngIf="hasTaskFille(taskFille)">
+                <option *ngFor="let taskFille2 of taskFille.listTaskChild">{{taskFille2.name}}</option>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
       </select>
     </div>
     <div class="form-group">
