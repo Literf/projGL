@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from '../models/project';
 import { Task } from '../models/task';
 import { AddInfoService } from '../services/add-info.service';
@@ -176,5 +175,18 @@ export class FormProjectComponent implements OnInit {
     this.description = null;
     this.task = null;
   }
+
+  projectValid(){
+    return (this.projectName ===null || this.projectName === undefined || this.projectName === "");
+  }
+
+  taskValid(){
+    return (this.taskName ===null || this.taskName === undefined || this.taskName === "")
+  }
+  
+  taskFormOpened = false;
+  openTaskForm(){
+    this.taskFormOpened=true;
+  } 
 
 }
