@@ -19,4 +19,17 @@ export class User {
         public phone? : string,
         public endDate? : Date, //Date de départ
     ) {}
+    checkUserRole(route: string): boolean{
+        if(route=='admin'){
+            return this.admin;
+        }
+        if(route=='manager'){
+            return this.manager;
+        }
+        if(route=='collaborator'){
+            return this.collaborator;
+        }
+        return false;
+
+    }
   }

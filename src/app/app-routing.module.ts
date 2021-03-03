@@ -10,13 +10,14 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { CommonModule } from '@angular/common';
 import { ProjectBoardComponent } from'./project-board/project-board.component'
 import { InfoUserComponent } from './info-user/info-user.component';
+import { RoleGuardService } from './services/roleguard.service';
 
 
 const routes: Routes = [
  { path: 'main-window',canActivate: [AuthGuardService], component: MainWindowComponent },
  { path: 'main-window/infos-user',canActivate: [AuthGuardService], component: InfoUserComponent }, 
  { path: 'main-window/admin',canActivate: [AuthGuardService], component: AdminWindowComponent }, 
- { path: 'auth',component: AuthComponent },
+ { path: 'admin',canActivate:[RoleGuardService],component: AdminWindowComponent }, 
  { path: 'users/search',canActivate: [AuthGuardService], component: SearchUserComponent },
  { path: 'users/new',canActivate: [AuthGuardService], component: FormUserComponent },
  { path: 'user-modif/:id',canActivate: [AuthGuardService], component: ModifUserComponent },
