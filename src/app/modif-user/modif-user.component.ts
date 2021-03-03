@@ -8,6 +8,14 @@ import { UsersService } from '../services/users.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import "firebase/auth";
+import { Project } from '../models/project';
+import { ListTasksComponent } from '../list-tasks/list-tasks.component';
+import { AddInfoService } from '../services/add-info.service';
+import { ListProjectsComponent} from  '../list-projects/list-projects.component';
+
+import { Subscription } from 'rxjs';
+
+import { HttpClient } from '@angular/common/http'
 
 @Component({
   selector: 'app-modif-user',
@@ -38,19 +46,43 @@ export class ModifUserComponent implements OnInit {
   submitted = false;
 
   user: User;
-
+  projects : Project[];
+  projectSubscription: Subscription;
+  
   constructor(
     private formBuilder: FormBuilder, 
     private authService: AuthService,
     private route: ActivatedRoute,
     private userService: UsersService,
+    //Project service
+    private projectService: AddInfoService,
+    
+
+
     private location: Location )
   {} 
 
   async ngOnInit(){
     this.userService.getUsersFromServer(); //Fetch user to modify later the list
+    
+    this.projectService.getListProjectsFromServer(); //avoir la liste des projets
+    
+    this.projects = this.projectService.listProject;
+    /*
+    this.projectSubscription = this.projectService.projectSubject.subscribe(
+      (listPr: Project[]) => {
+        this.projects = listPr;
+      }
+      
+
+      
+    );
+    this.projectService.emitProjectsubject();
+    */
     try {
       await this.getUser();
+      await this.getProject();
+      
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +105,7 @@ export class ModifUserComponent implements OnInit {
       department: [this.user.department, ],
       address: [this.user.address, ],
       phone: [this.user.phone, ],
-      endDate: [this.user.endDate, ],
+      endDate: [this.user.endDate, ], 
     });
   }
 
@@ -83,6 +115,11 @@ export class ModifUserComponent implements OnInit {
     const user = await this.userService.getUsers();
     this.user = user.find(el => el != null && el.email===email);
   }
+  async getProject() {
+
+    const projects = await this.projectService.getListProjectsFromServer()
+  }
+  
 
   goBack(): void {
     this.location.back();
@@ -112,8 +149,31 @@ export class ModifUserComponent implements OnInit {
   }
 
   delete(){
+    
+    this.projects.forEach(p => {
+      if (p.projectManager!==this.user.email){
+        console.log("ici");
+        this.goBack();
+        return;
+      }
+      else{
+      p.listTask.forEach(t =>{
+        if (t.collab!==this.user.email){
+          this.goBack();
+          console.log("ici");   
+          return; 
+
+        }
+
+      })
+    }
+    });  
     this.userService.delete(this.user.email);
     this.goBack();
+    return; 
+    }
   }
+    
 
-}
+
+

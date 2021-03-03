@@ -20,7 +20,8 @@ export class ListProjectsComponent implements OnInit {
   closeResult = '';
   public projetActuel:Project;
   
-  @Input() public listProjects:Project[];
+  @Input() 
+  public listProjects:Project[];
 
   public projectName:string = "";
   public ChefName:string = "";
@@ -80,7 +81,7 @@ export class ListProjectsComponent implements OnInit {
   }
 
   openAndGetProject(projet,content){
-    /*this.projetActuel = projet;
+    this.projetActuel = projet;
     this.projectName = this.projetActuel.name.toLowerCase();
     if(this.projetActuel.hasOwnProperty('estimatedEndDate'))
     {
@@ -102,6 +103,7 @@ export class ListProjectsComponent implements OnInit {
     {
       this.ChefName = this.projetActuel.projectManager;
     }
+    /*
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`; 
     }, (reason) => {
