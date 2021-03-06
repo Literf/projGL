@@ -16,12 +16,14 @@ import { RoleGuardService } from './services/roleguard.service';
 const routes: Routes = [
  { path: 'main-window',canActivate: [AuthGuardService], component: MainWindowComponent },
  { path: 'main-window/infos-user',canActivate: [AuthGuardService], component: InfoUserComponent }, 
- { path: 'main-window/admin',canActivate: [AuthGuardService], component: AdminWindowComponent }, 
- { path: 'admin',canActivate:[RoleGuardService],component: AdminWindowComponent }, 
+ { path: 'main-window/admin',canActivate: [AuthGuardService], component: AdminWindowComponent 
+ //, 
+,data: {role: "admin"} 
+}, 
  { path: 'users/search',canActivate: [AuthGuardService], component: SearchUserComponent },
  { path: 'users/new',canActivate: [AuthGuardService], component: FormUserComponent },
  { path: 'user-modif/:id',canActivate: [AuthGuardService], component: ModifUserComponent },
- { path: 'project', component: ProjectBoardComponent},
+ { path: 'project', component: ProjectBoardComponent}, 
  { path: '', component: AuthComponent},
  { path: '', redirectTo: 'main-window', pathMatch: 'full' },
  { path: '**', redirectTo: 'main-window' }

@@ -3,21 +3,26 @@ import { CanActivate, Router,ActivatedRoute, ActivatedRouteSnapshot,  RouterStat
 import { Observable } from "rxjs";
 import firebase from "firebase/app";
 import "firebase/auth";
-import { AuthService } from "./auth.service";
+
+import { UsersService } from '../services/users.service';
+import { User } from '../models/user';
+
 //import "firebase/firestore";
 
 @Injectable()
-export class RoleGuardService implements CanActivate{
-    constructor(private router: Router,private authService: AuthService) {}
+export class RoleGuardService implements CanActivate
+
+
+/*{
+    constructor(private router: Router) {}
     canActivate(
-        next: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-            let url: string = state.url;
-            const expectedRole = next.data.role;
+        next: ActivatedRouteSnapshot,): Observable<boolean> | Promise<boolean> | boolean {
+            
+            let  expectedRole : string = next.data.role;
         return new Promise(
             (resolve, reject) => {
                 (user) =>{
-                    if(user.checkUserRole(expectedRole)==true) {
+                    if(user.checkUserRole(expectedRole)==false) {
                         resolve(true);
                     } else {
                         this.router.navigate(['/main-window']);
@@ -25,6 +30,33 @@ export class RoleGuardService implements CanActivate{
                     }
                 
             }
+            });
+    }
+}*/
+
+{
+    constructor(private router: Router) {}
+    canActivate(
+        next: ActivatedRouteSnapshot,): Observable<boolean> | Promise<boolean> | boolean {
+            
+            let  expectedRole : string = next.data.role;
+            let service:UsersService;
+        return new Promise(
+            (resolve, reject) => 
+            {
+                firebase.auth().onAuthStateChanged(
+                (user) =>{
+                    let user2:User = service.getUser(user.email);
+                    if(user2.checkUserRole(expectedRole)==true){
+                        //.checkUserRole(expectedRole)==false) {
+                        resolve(true);
+                    } else {
+                        this.router.navigate(['/main-window']);
+                        reject(false);
+                    }
+                
+                }
+                );
             });
     }
 }
